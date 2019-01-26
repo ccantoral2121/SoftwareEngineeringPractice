@@ -29,8 +29,19 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
+        /*An email is valid if it has a domain name, .com/.net/.edu/ etc
+          at the end. and has a name before the @ symbol.
+        */
         assertTrue(BankAccount.isEmailValid( "a@b.com"));
         assertFalse( BankAccount.isEmailValid(""));
+        assertFalse( BankAccount.isEmailValid("@.."));
+        assertFalse( BankAccount.isEmailValid("@.com"));
+        assertFalse( BankAccount.isEmailValid("a@.."));
+        assertFalse( BankAccount.isEmailValid("@..com"));
+        assertFalse( BankAccount.isEmailValid("d@..com"));
+        assertFalse( BankAccount.isEmailValid("a@@b.com"));
+        assertFalse( BankAccount.isEmailValid("a@.com.com"));
+
     }
 
     @Test

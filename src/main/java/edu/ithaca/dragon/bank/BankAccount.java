@@ -1,4 +1,7 @@
 package edu.ithaca.dragon.bank;
+//use to validate isEmailValid
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BankAccount {
 
@@ -38,11 +41,16 @@ public class BankAccount {
     }
 
     public static boolean isEmailValid(String email){
-        if (email.indexOf('@') == -1) {
-            return false;
-        }
-        else {
-            return true;
-        }
+
+        //Email Regex
+        String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+        Pattern pattern;
+        Matcher matcher;
+        //initialize the Pattern object
+        pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+        matcher = pattern.matcher(email);
+        //returns validation
+        return matcher.matches();
+
     }
 }
