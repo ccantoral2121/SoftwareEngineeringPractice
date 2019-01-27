@@ -19,12 +19,13 @@ class BankAccountTest {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         bankAccount.withdraw(100);
         assertEquals(100, bankAccount.getBalance());
-        //New test #1
-        bankAccount.withdraw(101);
-        assertEquals(100, bankAccount.getBalance());
-        //New test #2
+        //New test using exception InsufficientFundException
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.withdraw(101));
+        //Negative test #2
         bankAccount.withdraw(-1);
         assertEquals(100, bankAccount.getBalance());
+        //Decimal test
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(0.001));
 
     }
 
@@ -46,17 +47,21 @@ class BankAccountTest {
 
     @Test
     void constructorTest() {
-        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        BankAccount bankAccount = new BankAccount("a@b.com", 100);
 
         assertEquals("a@b.com", bankAccount.getEmail());
-        assertEquals(200, bankAccount.getBalance());
+        assertEquals(100, bankAccount.getBalance());
+
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -50));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 20.022));
+
     }
 
     @Test
 
-    void isAmountValid(){
+    void isAmountValidTest(){
 
 
         assertTrue(BankAccount.isAmountValid(10));
