@@ -15,15 +15,14 @@ class BankAccountTest {
     }
 
     @Test
-    void withdrawTest() {
+    void withdrawTest() throws InsufficientFundsException{
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         bankAccount.withdraw(100);
         assertEquals(100, bankAccount.getBalance());
         //New test using exception InsufficientFundException
         assertThrows(InsufficientFundsException.class, ()-> bankAccount.withdraw(101));
-        //Negative test #2
-        bankAccount.withdraw(-1);
-        assertEquals(100, bankAccount.getBalance());
+        //Negative test using exception InsufficientFundException
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(-1));
         //Decimal test
         assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(0.001));
 
