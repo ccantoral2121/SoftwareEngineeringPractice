@@ -40,7 +40,16 @@ public class BankAccount {
 
     }
 
+    /**
+     * @post an Email is valid if it has a domain name, .com/.net/.edu/ etc
+     *       at the end. and has a name before the @ symbol.
+     *
+     * @param email
+     *
+     **/
+
     public static boolean isEmailValid(String email){
+
 
         //Email Regex
         String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
@@ -53,4 +62,18 @@ public class BankAccount {
         return matcher.matches();
 
     }
+
+    /**
+     * @post takes a double and returns true it the amount is positive and has two decimal
+     *       points or less, and false otherwise
+     */
+
+    public static boolean isAmountValid(double amount){
+
+
+        return false;
+    }
+
 }
+
+

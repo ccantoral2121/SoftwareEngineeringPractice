@@ -11,6 +11,7 @@ class BankAccountTest {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
         assertEquals(200, bankAccount.getBalance());
+
     }
 
     @Test
@@ -29,9 +30,7 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        /*An email is valid if it has a domain name, .com/.net/.edu/ etc
-          at the end. and has a name before the @ symbol.
-        */
+
         assertTrue(BankAccount.isEmailValid( "a@b.com"));
         assertFalse( BankAccount.isEmailValid(""));
         assertFalse( BankAccount.isEmailValid("@.."));
@@ -41,6 +40,7 @@ class BankAccountTest {
         assertFalse( BankAccount.isEmailValid("d@..com"));
         assertFalse( BankAccount.isEmailValid("a@@b.com"));
         assertFalse( BankAccount.isEmailValid("a@.com.com"));
+
 
     }
 
@@ -52,6 +52,22 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance());
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+    }
+
+    @Test
+
+    void isAmountValid(){
+
+
+        assertTrue(BankAccount.isAmountValid(10.00));
+        assertTrue(BankAccount.isAmountValid(0.01));
+        assertTrue(BankAccount.isAmountValid(0.00));
+
+        assertFalse(BankAccount.isAmountValid(10.001));
+        assertFalse(BankAccount.isAmountValid(10.0));
+        assertFalse(BankAccount.isAmountValid(-1));
+
+
     }
 
 }
