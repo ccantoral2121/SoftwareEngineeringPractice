@@ -59,6 +59,7 @@ class BankAccountTest {
     void isAmountValid(){
 
 
+        assertTrue(BankAccount.isAmountValid(10));
         assertTrue(BankAccount.isAmountValid(10.00));
         assertTrue(BankAccount.isAmountValid(0.01));
         assertTrue(BankAccount.isAmountValid(0.1));

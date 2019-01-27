@@ -1,7 +1,9 @@
 package edu.ithaca.dragon.bank;
 //use to validate isEmailValid
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class BankAccount {
 
@@ -70,8 +72,19 @@ public class BankAccount {
 
     public static boolean isAmountValid(double amount){
 
+        if(amount < 0){
+            return false;
+        }
 
-        return false;
+        String num = String.valueOf(amount);
+        int i = num.lastIndexOf('.');
+
+        if( i != -1 && num.substring( i + 1 ).length() <= 2){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 }
